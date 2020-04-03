@@ -1,5 +1,6 @@
 from datetime import datetime
 from datetime import timedelta
+import time
 
 from airflow import DAG
 from airflow.operators.python_operator import PythonOperator
@@ -37,7 +38,7 @@ task2 = PythonOperator(
     task_id="dump_topics",
     python_callable=dump_topics,
     op_kwargs={
-        "filename": "topics.json"
+        "filename": "topics-{}.json".format(time.strftime("%Y-%m-%d--%H-%M-%S"))
     },
     dag=dag
 )

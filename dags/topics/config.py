@@ -24,6 +24,7 @@ class Config(object):
     class S3(object):
         access_key=environ.var()
         secret_key=environ.var()
+        bucket=environ.var()
 
     s3 = environ.group(S3)
 

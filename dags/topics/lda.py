@@ -14,16 +14,14 @@ PUNCTUATION = [".", ",", '"', "'", "?", "!", ":", ";", "(", ")", "[", "]", "{", 
 
 stop_words = set(stopwords.words(LANGUAGE))
 stop_words.update(PUNCTUATION)
-stop_words.update(["rt"]"
+stop_words.update(["rt"])
 
 
 def dump_topics(**context):
     file_name = context["filename"]
     tweets = context["task_instance"].xcom_pull(task_ids="extract_tweets")
-    print(tweets)
     topics = _extract_topics(tweets)
-    print(topics)
-    with open(file_name, "w") as f:
+    with open(file_name, "w+") as f:
         json.dump(topics, f)
     return file_name
 

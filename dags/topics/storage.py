@@ -2,7 +2,7 @@ import os
 
 import minio
 
-from .config import settings
+from .config import s3 as settings
 
 
 def push_result(**context):
@@ -10,8 +10,8 @@ def push_result(**context):
 
     client = minio.Minio(
         's3.amazonaws.com',
-        access_key=settings.s3.access_key,
-        secret_key=settings.s3.secret_key,
+        access_key=settings.access_key,
+        secret_key=settings.secret_key,
     )
 
-    client.fput_object('airflow-topics', file_name, file_name)
+    client.fput_object(settings.bucket, file_name, file_name)

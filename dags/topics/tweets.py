@@ -15,10 +15,10 @@ def extract_tweets(**context):
     samples = []
 
     for line in api.GetStreamSample(stall_warnings=True):
-        if "text" in line:
-            if line["lang"]=="en":
-                samples.append(line["text"])
-        if len(samples) == sample_size
+        if "text" in line and line["lang"] == "en":
+            samples.append(line["text"])
+
+        if len(samples) == sample_size:
             break
 
     return samples
