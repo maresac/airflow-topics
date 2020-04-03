@@ -1,0 +1,6 @@
+environ-config
+minio
+nltk
+python-dotenv
+python-twitter
+sklearn

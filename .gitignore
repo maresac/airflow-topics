@@ -1,0 +1,9 @@
+*.json
+logs
+airflow*
+*.cfg
+.env
+
+__pycache__
+*.py[cod]
+*$py.class
