@@ -10,16 +10,29 @@ This is my first project using airflow.
 * Existing AWS S3 Bucket
 
 ### Configuration
-Place an .env file in dags/topics/ containing the following env variables:
-* TWITTER\_CONSUMER\_KEY
-* TWITTER\_CONSUMER\_SECRET
-* TWITTER\_ACCESS\_TOKEN
-* TWITTER\_ACCESS\_TOKEN\_SECRET
-* TWITTER\_SAMPLE\_SIZE (optional)
-* LDA\_NUM\_TOPICS (optional)
-* LDA\_NUM\_TOP\_WORDS (optional)
-* S3\_ACCESS\_KEY
-* S3\_SECRET\_KEY
-* S3\_BUCKET
-* AIRFLOW\_SCHEDULE (optional)
+Place an `.env` file in `dags/topics/` containing the following env variables:
+* `TWITTER_CONSUMER_KEY`
+* `TWITTER_CONSUMER_SECRET`
+* `TWITTER_ACCESS_TOKEN`
+* `TWITTER_ACCESS_TOKEN_SECRET`
+* `TWITTER_SAMPLE_SIZE` (optional)
+* `LDA_NUM_TOPICS` (optional)
+* `LDA_NUM_TOP_WORDS` (optional)
+* `S3_ACCESS_KEY`
+* `S3_SECRET_KEY`
+* `S3_BUCKET`
+* `AIRFLOW_SCHEDULE` (optional)
 
+### Usage
+* Run `pip install -r requirements.txt` first
+* Set `AIRFLOW_HOME` to your project path
+* Get airflow up and running:
+  * `airflow initdb`
+  * `airflow scheduler`
+  * `airflow webserver -p 8080`
+* Run tasks separately:
+  * `airflow test airflow-topics extract_tweets $(date +%F)`
+  * `airflow test airflow-topics dump_topics $(date +%F)`
+  * `airflow test airflow-topics push_results $(date +%F)`
+* Alternatively:
+  * `airflow trigger_dag airflow-topics`
